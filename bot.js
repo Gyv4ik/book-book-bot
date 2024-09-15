@@ -1,7 +1,7 @@
-import { config } from "dotenv";
+import { config } from "npm:dotenv";
 
-import { Bot, GrammyError, HttpError, Keyboard, InlineKeyboard } from "grammy";
-import { Menu } from "@grammyjs/menu";
+import { Bot, GrammyError, HttpError, Keyboard, InlineKeyboard } from "npm:grammy";
+import { Menu } from "npm:@grammyjs/menu";
 
 config();
 const bot = new Bot(process.env.API_TOKEN);
