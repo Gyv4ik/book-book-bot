@@ -1,7 +1,9 @@
 import { config } from "npm:dotenv";
 
-import { Bot, GrammyError, HttpError, Keyboard, InlineKeyboard } from "npm:grammy";
+import { Bot, GrammyError, HttpError, Keyboard, InlineKeyboard, webhookCallback } from "https://deno.land/x/grammy@v1.17.2/mod.ts";
 import { Menu } from "npm:@grammyjs/menu";
+
+import { serve } from "https://deno.land/std@0.182.0/http/server.ts";
 
 config();
 const bot = new Bot(Deno.env.get("API_TOKEN"));
@@ -71,10 +73,17 @@ bot.catch((e) => {
   console.error("Unknown error:", e.error);
 });
 
-// is about to be terminated
-// process.once("SIGINT", () => bot.stop());
-// process.once("SIGTERM", () => bot.stop()); // Stopping the bot when the Node.js process
+const handleUpdate = webhookCallback(bot, "std/http");
 
-
-
-export default bot;
+// Serve incoming requests on Deno Deploy
+serve(async (req) => {
+  if (req.method === "POST") {
+    try {
+      return await handleUpdate(req);
+    } catch (err) {
+      console.error("Error in bot:", err);
+      return new Response("Internal Server Error", { status: 500 });
+    }
+  }
+  return new Response("Hello from Deno Deploy!", { status: 200 });
+});

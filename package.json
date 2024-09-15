@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "bot.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "deno run --allow-net --allow-env bot.js"
   },
   "private": true,
   "keywords": [],
