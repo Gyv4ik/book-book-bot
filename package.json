@@ -1,0 +1,20 @@
+{
+  "name": "myschoolbookbookbot",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@grammyjs/menu": "^1.2.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "grammy": "^1.29.0",
+    "nodemon": "^3.1.4"
+  }
+}
