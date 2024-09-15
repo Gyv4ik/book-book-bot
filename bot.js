@@ -72,8 +72,8 @@ bot.catch((e) => {
 });
 
 // is about to be terminated
-process.once("SIGINT", () => bot.stop());
-process.once("SIGTERM", () => bot.stop()); // Stopping the bot when the Node.js process
+// process.once("SIGINT", () => bot.stop());
+// process.once("SIGTERM", () => bot.stop()); // Stopping the bot when the Node.js process
 
 
 
