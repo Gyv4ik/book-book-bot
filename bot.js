@@ -4,7 +4,7 @@ import { Bot, GrammyError, HttpError, Keyboard, InlineKeyboard } from "npm:gramm
 import { Menu } from "npm:@grammyjs/menu";
 
 config();
-const bot = new Bot(process.env.API_TOKEN);
+const bot = new Bot(Deno.env.get("API_TOKEN"));
 
 bot.command("start", async (ctx) => {
   const keyboard = new Keyboard().text("Тест на рівень").text("Обрати книгу");
