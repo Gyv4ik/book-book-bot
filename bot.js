@@ -32,13 +32,18 @@ bot.hears("Тест на рівень", async (ctx) => {
 });
 
 bot.hears("Обрати книгу", async (ctx) => {
-  const booksKeyboard = new InlineKeyboard()
-      .url("The Phantom of the Opera", "https://drive.google.com/drive/folders/10QEDjcnpM49PVGBMaTFASWbGL9Pb5Oz1")
-      .url("Frankenstein", "https://drive.google.com/drive/folders/1Of9vxXFIK0Ok-93i2ss6yVKCNQNaJM-b")
-      .url("Sherlock Holmes: The Emerald Crown", "https://drive.google.com/drive/folders/17xlQ7jxyPp6K9gPgQhDgmXoERr0zu65L");
+  const books = [
+    { title: "The Phantom of the Opera", author: "Jennifer Bassett", level: "Beginner - Elementary (A1 - A2)", url: "https://drive.google.com/drive/folders/10QEDjcnpM49PVGBMaTFASWbGL9Pb5Oz1" },
+    { title: "Frankenstein", author: "Mary Shelley", level: "Beginner - Elementary (A1 - A2)", url: "https://drive.google.com/drive/folders/1Of9vxXFIK0Ok-93i2ss6yVKCNQNaJM-b" },
+    { title: "Sherlock Holmes: The Emerald Crown", author: "Arthur Conan Doyle", level: "Beginner - Elementary (A1 - A2)", url: "https://drive.google.com/drive/folders/17xlQ7jxyPp6K9gPgQhDgmXoERr0zu65L" },
+  ];
 
-  await ctx.reply("Яку книгу будеш читати?", {
-    reply_markup: booksKeyboard,
+  const bookList = books.map((book, index) => 
+    `${index + 1}. [${book.title} - ${book.author}](${book.url})\nLevel: ${book.level}`
+  ).join('\n\n');
+
+  await ctx.reply("Яку книгу будеш читати?\n\n" + bookList, {
+    parse_mode: "Markdown",
   });
 });
 
